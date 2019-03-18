@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Load_forecast_using_ANN.Model
 {
-    class DataImport
+    class DataImport : ForecastData
     {
-        public string Years { get; set; }
-        public string Economy { get; set; }
-        public string Population { get; set; }
-        public string Temperature { get; set; }
-        public string Load { get; set; }
+        public double Load { get; set; }
     }
 }        

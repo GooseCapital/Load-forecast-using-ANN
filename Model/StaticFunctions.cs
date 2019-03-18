@@ -15,13 +15,9 @@ namespace Load_forecast_using_ANN.Model
             return Path.Combine(Directory.GetCurrentDirectory(), "data", fileName);
         }
 
-        public static bool ReplaceDataFromList(string filePath, List<string> dataList)
+        public static void ReplaceDataFromList(string filePath, List<double> dataList)
         {
-            if (!File.Exists(filePath))
-                return false;
-
             File.WriteAllText(filePath, string.Join(" ", dataList));
-            return true;
         }
     }
 }

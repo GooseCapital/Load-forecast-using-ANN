@@ -10,30 +10,38 @@
         mc:Ignorable="d"
         GlowBrush="{DynamicResource AccentColorBrush}"
         Title="Dự báo phụ tải - NCKH 2019 - Đại học Thuỷ Lợi" Height="361" Width="597" Loaded="MainWindows_Loaded">
-    <Grid>
-        <TabControl HorizontalAlignment="Left" Width="589" Margin="0,10,0,0">
-            <TabItem Header="Số liệu" Margin="10,0,-10,0">
-                <Grid>
-                    <DataGrid ItemsSource="{Binding Source = Model.DataImport}" x:Name="DataGridTableValue" CanUserResizeColumns="True" AutoGenerateColumns="False" controls:DataGridHelper.EnableCellEditAssist="True" controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Margin="10,0,0,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="1*" Header="Năm" Binding="{Binding Years}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="1*" Header="Dân số" Binding="{Binding Population}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="1*" Header="Nhiệt độ" Binding="{Binding Temperature}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="1*" Header="Kinh tế" Binding="{Binding Economy}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="1*" Header="Phụ tải" Binding="{Binding Load}"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Công cụ" Margin="24,0,-24,0">
-                <Grid>
-                    <Button x:Name="BtnStart" Content="Bắt đầu" Margin="44,99,334,102" Click="BtnStart_Click"/>
-                    <Button x:Name="BtnSaveData" Content="Lưu số liệu" Margin="0,99,44,102" HorizontalAlignment="Right" Width="206" Click="BtnSaveData_Click"/>
+    <TabControl>
+        <TabItem Header="Số liệu" Margin="10,0,-10,0">
+            <DataGrid x:Name="DataGridTableValue" GridLinesVisibility="All" CanUserResizeColumns="True" AutoGenerateColumns="False" controls:DataGridHelper.EnableCellEditAssist="True" controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Margin="10,0,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="1*" Header="Năm" Binding="{Binding Years}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Dân số" Binding="{Binding Population}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Nhiệt độ" Binding="{Binding Temperature}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Kinh tế" Binding="{Binding Economy}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Phụ tải" Binding="{Binding Load}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="Số liệu dự báo" Margin="13,0,-13,0">
+            <DataGrid x:Name="DataGridForecast" GridLinesVisibility="All" CanUserResizeColumns="True" AutoGenerateColumns="False" controls:DataGridHelper.EnableCellEditAssist="True" controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Margin="10,0,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="1*" Header="Năm" Binding="{Binding Years}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Dân số" Binding="{Binding Population}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Nhiệt độ" Binding="{Binding Temperature}"></DataGridTextColumn>
+                    <DataGridTextColumn Width="1*" Header="Kinh tế" Binding="{Binding Economy}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="Công cụ" Margin="16,0,-21,0">
+            <Grid>
+                <Button x:Name="BtnStart" Content="Bắt đầu" Margin="47,81,331,120" Click="BtnStart_Click"/>
+                <Button x:Name="BtnSaveData" Content="Lưu số liệu" Margin="336,81,41,120" Click="BtnSaveData_Click"/>
+                <TextBlock HorizontalAlignment="Left" Margin="65,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Số nơron:"/>
+                <TextBox x:Name="TbNumberNoron" HorizontalAlignment="Left" Height="23" Margin="129,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-                </Grid>
-            </TabItem>
-        </TabControl>
-    </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
             <Button Content="Thông tin" x:Name="BtnInfoAuthor" Click="BtnInfoAuthor_OnClick"/>
