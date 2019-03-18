@@ -1,0 +1,42 @@
+﻿<controls:MetroWindow 
+        x:Class="Load_forecast_using_ANN.MainWindow"
+        x:Name="MainWindows"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Load_forecast_using_ANN"
+        mc:Ignorable="d"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Title="Dự báo phụ tải - NCKH 2019 - Đại học Thuỷ Lợi" Height="361" Width="597" Loaded="MainWindows_Loaded">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Width="589" Margin="0,10,0,0">
+            <TabItem Header="Số liệu" Margin="10,0,-10,0">
+                <Grid>
+                    <DataGrid ItemsSource="{Binding Source = Model.DataImport}" x:Name="DataGridTableValue" CanUserResizeColumns="True" AutoGenerateColumns="False" controls:DataGridHelper.EnableCellEditAssist="True" controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" Margin="10,0,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="1*" Header="Năm" Binding="{Binding Years}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Dân số" Binding="{Binding Population}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Nhiệt độ" Binding="{Binding Temperature}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Kinh tế" Binding="{Binding Economy}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="1*" Header="Phụ tải" Binding="{Binding Load}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Công cụ" Margin="24,0,-24,0">
+                <Grid>
+                    <Button x:Name="BtnStart" Content="Bắt đầu" Margin="44,99,334,102" Click="BtnStart_Click"/>
+                    <Button x:Name="BtnSaveData" Content="Lưu số liệu" Margin="0,99,44,102" HorizontalAlignment="Right" Width="206" Click="BtnSaveData_Click"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Content="Thông tin" x:Name="BtnInfoAuthor" Click="BtnInfoAuthor_OnClick"/>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+</controls:MetroWindow>
