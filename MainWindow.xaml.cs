@@ -206,9 +206,18 @@ namespace Load_forecast_using_ANN
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            ANN_Class annClass = new ANN_Class();
-            annClass.Forecast_Load_ANN();
-            annClass.WaitForFiguresToDie();
+            BtnStart.IsEnabled = false;
+            //BtnSaveData.IsEnabled = false;
+            LoadingGrid.Visibility = Visibility.Visible;
+            Task.Run(() =>
+            {
+                ANN_Class annClass = new ANN_Class();
+                annClass.Forecast_Load_ANN();
+                annClass.WaitForFiguresToDie();
+                BtnStart.Dispatcher.Invoke(() => { BtnStart.IsEnabled = true; });
+                //BtnSaveData.Dispatcher.Invoke(() => { BtnSaveData.IsEnabled = true; });
+                LoadingGrid.Dispatcher.Invoke(() => { LoadingGrid.Visibility = Visibility.Hidden; });
+            });
         }
 
         private void BtnSaveData_Click(object sender, RoutedEventArgs e)

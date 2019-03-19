@@ -34,11 +34,13 @@
         </TabItem>
         <TabItem Header="Công cụ" Margin="16,0,-21,0">
             <Grid>
-                <Button x:Name="BtnStart" Content="Bắt đầu" Margin="47,81,331,120" Click="BtnStart_Click"/>
-                <Button x:Name="BtnSaveData" Content="Lưu số liệu" Margin="336,81,41,120" Click="BtnSaveData_Click"/>
-                <TextBlock HorizontalAlignment="Left" Margin="65,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Số nơron:"/>
-                <TextBox x:Name="TbNumberNoron" HorizontalAlignment="Left" Height="23" Margin="129,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
+                <Button x:Name="BtnStart" Content="Bắt đầu" Margin="48,99,330,102" Click="BtnStart_Click"/>
+                <Button x:Name="BtnSaveData" Content="Lưu số liệu" Margin="337,99,40,102" Click="BtnSaveData_Click"/>
+                <TextBlock HorizontalAlignment="Left" Margin="49,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Số nơron:"/>
+                <TextBox x:Name="TbNumberNoron" HorizontalAlignment="Left" Height="23" Margin="113,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <Grid Visibility="Hidden" x:Name="LoadingGrid">
+                    <controls:ProgressRing Foreground="{DynamicResource AccentColorBrush}"/>
+                </Grid>
             </Grid>
         </TabItem>
     </TabControl>
