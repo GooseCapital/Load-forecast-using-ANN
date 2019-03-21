@@ -239,7 +239,7 @@ namespace Load_forecast_using_ANN
             LoadingGrid.Visibility = Visibility.Visible;
             Task.Run(() =>
             {
-                Class1 annClass = new Class1(); 
+                OfflineANNClass annClass = new OfflineANNClass(); 
                 annClass.Forecast_Load_ANN();
                 annClass.WaitForFiguresToDie();
                 Thread.Sleep(1000);

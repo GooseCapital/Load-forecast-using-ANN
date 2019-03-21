@@ -40,11 +40,11 @@
     </Reference>
     <Reference Include="Forecast_Load_ANN, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Desktop\Test Function\Non Internet\Forecast_Load_ANN\for_redistribution_files_only\Forecast_Load_ANN.dll</HintPath>
+      <HintPath>..\..\..\Desktop\Test Function\Offline\Forecast_Load_ANN\for_redistribution_files_only\Forecast_Load_ANN.dll</HintPath>
     </Reference>
     <Reference Include="Forecast_Load_ANNNative, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Desktop\Test Function\Non Internet\Forecast_Load_ANN\for_redistribution_files_only\Forecast_Load_ANNNative.dll</HintPath>
+      <HintPath>..\..\..\Desktop\Test Function\Offline\Forecast_Load_ANN\for_redistribution_files_only\Forecast_Load_ANNNative.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -54,6 +54,10 @@
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="MWArray, Version=2.18.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\MWArray\v4.0_2.18.0.0__e1d84a0da19db86f\MWArray.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
