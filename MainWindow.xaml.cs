@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -107,12 +109,16 @@ namespace Load_forecast_using_ANN
 
         private bool LoadFile(string fileName, ref List<double> objectSet)
         {
+
             if (File.Exists(StaticFunctions.PathDataCombine(fileName)))
             {
+                var format = new NumberFormatInfo();
+                format.NegativeSign = "-";
+                format.NumberDecimalSeparator = ".";
                 string temp = File.ReadAllText(StaticFunctions.PathDataCombine(fileName));
                 for (int i = 0; i < temp.Split(' ').Length; i++)
                 {
-                    objectSet.Add(Convert.ToDouble(temp.Split(' ')[i]));
+                    objectSet.Add(Double.Parse(temp.Split(' ')[i], NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign, format));
                 }
                 return true;
             }
@@ -200,23 +206,65 @@ namespace Load_forecast_using_ANN
 
             _nhietDoDubao = new List<double>();
             _danSoDubao = new List<double>();
-           _kinhTeDubao = new List<double>();
-           _yearsDubao = new List<double>();
+            _kinhTeDubao = new List<double>();
+            _yearsDubao = new List<double>();
+        }
+
+        private List<double> LoadResultList(string filename)
+        {
+            var format = new NumberFormatInfo();
+            format.NegativeSign = "-";
+            format.NumberDecimalSeparator = ".";
+            List<double> exportList = new List<double>();
+            string temp = File.ReadAllText(filename);
+            string[] doubleArray = temp.Split(' ');
+            for (int i = 0; i < temp.Split(' ').Length - 1; i++)
+            {
+                exportList.Add(Double.Parse(doubleArray[i], NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign, format));
+            }
+
+            return exportList;
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
+            if (!SaveData())
+            {
+                MessageBox.Show("Dữ liệu điền vào chưa đủ", "Lỗi", MessageBoxButton.OK,
+                     MessageBoxImage.Error);
+                return;
+            }
             BtnStart.IsEnabled = false;
             //BtnSaveData.IsEnabled = false;
             LoadingGrid.Visibility = Visibility.Visible;
             Task.Run(() =>
             {
-                ANN_Class annClass = new ANN_Class();
+                Class1 annClass = new Class1(); 
                 annClass.Forecast_Load_ANN();
                 annClass.WaitForFiguresToDie();
+                Thread.Sleep(1000);
                 BtnStart.Dispatcher.Invoke(() => { BtnStart.IsEnabled = true; });
                 //BtnSaveData.Dispatcher.Invoke(() => { BtnSaveData.IsEnabled = true; });
                 LoadingGrid.Dispatcher.Invoke(() => { LoadingGrid.Visibility = Visibility.Hidden; });
+
+                List<double> errorList = LoadResultList("saiSo_output.txt");
+                List<double> loadList = LoadResultList("phuTai_output.txt");
+                List<double> yearsList = _years;
+                yearsList.AddRange(_yearsDubao);
+
+                //Start Error Chart
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    ErrorChart errorChart = new ErrorChart(_years, errorList);
+                    errorChart.Show();
+                }));
+
+                //Start Load Chart
+                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    LoadChart loadChart = new LoadChart(yearsList, _phuTai, loadList);
+                    loadChart.Show();
+                }));
             });
         }
 
